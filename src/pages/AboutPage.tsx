@@ -89,10 +89,31 @@ export const AboutPage: React.FC = () => {
     },
   ];
 
+  const artisans = [
+    {
+      name: 'Aditi Sundaram',
+      role: 'Founding Pastry Chef & Viennoiserie Lead',
+      bio: 'Trained in classic French lamination with 12 years perfecting butter folds, fruit purées, and sourdough starters.',
+      image: 'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=700&auto=format&fit=crop&q=80',
+    },
+    {
+      name: 'Raghavan Pillai',
+      role: 'Head Hearth Baker',
+      bio: 'Master of slow 36-hour cold fermentations and rustic hearth breads using stone-milled grains and natural leaven.',
+      image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=700&auto=format&fit=crop&q=80',
+    },
+    {
+      name: 'Maya Chen',
+      role: 'Celebration Cake Sculptor & Floral Stylist',
+      bio: 'Specialist in architectural tiers, hand-piped botanicals, and delicate Swiss meringue buttercreams.',
+      image: 'https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?w=700&auto=format&fit=crop&q=80',
+    },
+  ];
+
   return (
     <div id="about-page" className="w-full">
       {/* 1. HERO */}
-      <section className="relative py-24 sm:py-32 bg-[#FAF8F5] border-b border-[#EBE1D7] overflow-hidden">
+      <section className="relative py-20 sm:py-28 bg-[#FAF8F5] border-b border-[#EBE1D7] overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <span className="text-xs uppercase tracking-[0.25em] font-medium text-[#B85D43] mb-3 block">
             The Crumb &amp; Co. Philosophy
@@ -104,6 +125,65 @@ export const AboutPage: React.FC = () => {
           <p className="mt-6 text-lg sm:text-xl text-[#7E716A] max-w-2xl mx-auto leading-relaxed font-normal">
             Crumb &amp; Co. was conceived as a celebration of honest flour, patient time, and the communal joy that comes from sharing something warm from the oven.
           </p>
+        </div>
+
+        {/* Hero Visual Image Gallery Strip */}
+        <div className="mt-12 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+            <div className="aspect-4/3 rounded-2xl overflow-hidden border border-[#EBE1D7] shadow-sm relative group bg-[#F5EFEB]">
+              <img
+                src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&auto=format&fit=crop&q=85"
+                alt="Artisan sourdough bakery hearth table"
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src =
+                    'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800&auto=format&fit=crop&q=85';
+                }}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <span className="text-[10px] uppercase tracking-wider text-[#FAF8F5]/80 font-semibold block">The Hearth</span>
+                <p className="font-serif text-sm font-medium">Stone Oven Bakes Since 2021</p>
+              </div>
+            </div>
+
+            <div className="aspect-4/3 rounded-2xl overflow-hidden border border-[#EBE1D7] shadow-sm relative group bg-[#F5EFEB]">
+              <img
+                src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=800&auto=format&fit=crop&q=85"
+                alt="Baker gently kneading slow fermented dough"
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src =
+                    'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&auto=format&fit=crop&q=85';
+                }}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <span className="text-[10px] uppercase tracking-wider text-[#FAF8F5]/80 font-semibold block">The Process</span>
+                <p className="font-serif text-sm font-medium">36-Hour Natural Fermentation</p>
+              </div>
+            </div>
+
+            <div className="aspect-4/3 rounded-2xl overflow-hidden border border-[#EBE1D7] shadow-sm relative group bg-[#F5EFEB]">
+              <img
+                src="https://images.unsplash.com/photo-1535141192574-5d4897c13136?w=800&auto=format&fit=crop&q=85"
+                alt="Botanical decorated celebration cake studio"
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src =
+                    'https://images.unsplash.com/photo-1535254973040-607b474cb50d?w=800&auto=format&fit=crop&q=85';
+                }}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <span className="text-[10px] uppercase tracking-wider text-[#FAF8F5]/80 font-semibold block">The Studio</span>
+                <p className="font-serif text-sm font-medium">Handcrafted Celebration Tiers</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Decorative subtle element */}
@@ -225,6 +305,55 @@ export const AboutPage: React.FC = () => {
               </div>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* 3.5 MEET THE KITCHEN ARTISANS */}
+      <section className="py-20 sm:py-24 bg-white border-b border-[#EBE1D7]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="The Hands Behind The Craft"
+            title="Meet Our Kitchen Artisans"
+            subtitle="From sunrise lamination to delicate celebration piping, our team brings decades of culinary passion to every bake."
+            align="center"
+            className="mb-14"
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {artisans.map((artisan) => (
+              <div
+                key={artisan.name}
+                className="rounded-2xl bg-[#FAF8F5] border border-[#EBE1D7] overflow-hidden hover:border-[#D9CBC2] hover:shadow-md transition-all duration-300 flex flex-col group"
+              >
+                <div className="aspect-4/3 overflow-hidden relative bg-[#F5EFEB]">
+                  <img
+                    src={artisan.image}
+                    alt={artisan.name}
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src =
+                        'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=700&auto=format&fit=crop&q=80';
+                    }}
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
+                </div>
+                <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-serif text-xl text-[#2C2420] font-medium">
+                      {artisan.name}
+                    </h3>
+                    <span className="text-xs uppercase tracking-wider text-[#B85D43] font-semibold mt-1 block">
+                      {artisan.role}
+                    </span>
+                    <p className="text-sm text-[#7E716A] mt-3 leading-relaxed">
+                      {artisan.bio}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -100,6 +100,53 @@ export const MenuPage: React.FC = () => {
               </button>
             )}
           </div>
+
+          {/* Visual Category Quick-Browse Cards */}
+          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 max-w-6xl mx-auto">
+            {CATEGORIES.map((cat) => {
+              const isSelected = selectedCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => handleCategoryChange(isSelected ? 'all' : cat.id)}
+                  className={`group text-left rounded-2xl p-2.5 transition-all duration-300 border flex flex-col items-center sm:items-start text-center sm:text-left cursor-pointer ${
+                    isSelected
+                      ? 'bg-white border-[#B85D43] shadow-md ring-2 ring-[#B85D43]/20'
+                      : 'bg-white/80 hover:bg-white border-[#EBE1D7] hover:border-[#D9CBC2] shadow-xs'
+                  }`}
+                >
+                  <div className="aspect-square w-full rounded-xl overflow-hidden mb-2.5 bg-[#F5EFEB] relative">
+                    <img
+                      src={cat.image}
+                      alt={cat.name}
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).src =
+                          'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&auto=format&fit=crop&q=80';
+                      }}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div
+                      className={`absolute inset-0 transition-opacity ${
+                        isSelected ? 'bg-[#B85D43]/15' : 'bg-black/10 group-hover:bg-transparent'
+                      }`}
+                    />
+                  </div>
+                  <span
+                    className={`font-serif text-sm font-medium leading-tight block ${
+                      isSelected ? 'text-[#B85D43]' : 'text-[#2C2420] group-hover:text-[#B85D43]'
+                    }`}
+                  >
+                    {cat.name}
+                  </span>
+                  <span className="text-[11px] text-[#7E716A] mt-0.5">
+                    {PRODUCTS.filter((p) => p.category === cat.id).length} bakes
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </section>
 
@@ -117,8 +164,48 @@ export const MenuPage: React.FC = () => {
         </div>
       </div>
 
+      {/* Category Spotlight when a specific category is selected */}
+      {selectedCategory !== 'all' && (() => {
+        const currentCat = CATEGORIES.find((c) => c.id === selectedCategory);
+        if (!currentCat) return null;
+        return (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+            <div className="rounded-2xl bg-[#FAF8F5] border border-[#EBE1D7] overflow-hidden grid grid-cols-1 md:grid-cols-12 items-center shadow-xs">
+              <div className="md:col-span-4 h-48 sm:h-56 md:h-full min-h-[180px] relative overflow-hidden bg-[#F5EFEB]">
+                <img
+                  src={currentCat.image}
+                  alt={currentCat.name}
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/30 via-transparent to-transparent" />
+              </div>
+              <div className="md:col-span-8 p-6 sm:p-8">
+                <span className="text-xs uppercase tracking-wider font-semibold text-[#B85D43]">
+                  Category Spotlight
+                </span>
+                <h2 className="font-serif text-2xl sm:text-3xl text-[#2C2420] mt-1 mb-2 font-normal">
+                  {currentCat.name}
+                </h2>
+                <p className="text-sm text-[#7E716A] leading-relaxed max-w-2xl">
+                  {currentCat.description} Handcrafted each morning with patient slow fermentation, European cultured butter, and fresh seasonal ingredients.
+                </p>
+                <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-[#4A3E39]">
+                  <span className="flex items-center gap-1.5 font-medium">
+                    <span className="w-2 h-2 rounded-full bg-[#B85D43]" />
+                    {filteredProducts.length} Items Available Today
+                  </span>
+                  <span className="text-[#D9CBC2]">•</span>
+                  <span>Fresh Morning Batch from 7:00 AM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+
       {/* Products Grid */}
-      <section className="py-14 sm:py-20 bg-white">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {filteredProducts.length === 0 ? (
             <div className="text-center py-20 max-w-md mx-auto">
@@ -158,22 +245,39 @@ export const MenuPage: React.FC = () => {
 
       {/* Special Celebration Banner */}
       <section className="py-12 bg-[#F5EFEB] border-t border-[#EBE1D7]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
-          <div>
-            <span className="text-xs uppercase tracking-wider font-semibold text-[#B85D43]">
-              Need a Custom Cake or Bulk Pastry Box?
-            </span>
-            <h3 className="font-serif text-2xl text-[#2C2420] font-normal mt-1">
-              Bespoke Tiers, Dietary Adjustments &amp; Event Platters
-            </h3>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl bg-white border border-[#EBE1D7] p-6 sm:p-8 shadow-xs flex flex-col md:flex-row items-center gap-6">
+            <div className="w-full md:w-36 h-36 rounded-xl overflow-hidden shrink-0 bg-[#FAF8F5]">
+              <img
+                src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?w=600&auto=format&fit=crop&q=80"
+                alt="Celebration tiered cake"
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src =
+                    'https://images.unsplash.com/photo-1535141192574-5d4897c13136?w=600&auto=format&fit=crop&q=80';
+                }}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="flex-1 text-center md:text-left">
+              <span className="text-xs uppercase tracking-wider font-semibold text-[#B85D43]">
+                Need a Custom Cake or Bulk Pastry Box?
+              </span>
+              <h3 className="font-serif text-2xl text-[#2C2420] font-normal mt-1">
+                Bespoke Tiers, Dietary Adjustments &amp; Event Platters
+              </h3>
+              <p className="text-xs sm:text-sm text-[#7E716A] mt-1.5 leading-relaxed">
+                Consult directly with our pastry chefs to create something tailored for your special milestone.
+              </p>
+            </div>
+            <Link
+              to="/custom-orders"
+              className="shrink-0 px-6 py-3.5 rounded-full text-xs uppercase tracking-wider font-semibold bg-[#2C2420] text-white hover:bg-[#B85D43] transition-colors flex items-center gap-2 shadow-xs active:scale-[0.98]"
+            >
+              <span>Custom Cake Enquiry</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
           </div>
-          <Link
-            to="/custom-orders"
-            className="shrink-0 px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold bg-[#2C2420] text-white hover:bg-[#B85D43] transition-colors flex items-center gap-2 shadow-xs"
-          >
-            <span>Custom Cake Enquiry</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </Link>
         </div>
       </section>
 

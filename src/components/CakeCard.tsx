@@ -20,6 +20,10 @@ export const CakeCard: React.FC<CakeCardProps> = ({ cake, onEnquire }) => {
           src={cake.image}
           alt={cake.name}
           loading="lazy"
+          referrerPolicy="no-referrer"
+          onError={(e) => {
+            (e.currentTarget as HTMLImageElement).src = 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?w=1000&auto=format&fit=crop&q=80';
+          }}
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#2C2420]/30 via-transparent to-transparent opacity-40 group-hover:opacity-60 transition-opacity" />

@@ -85,6 +85,10 @@ export const Lightbox: React.FC<LightboxProps> = ({
         <img
           src={item.image}
           alt={item.title}
+          referrerPolicy="no-referrer"
+          onError={(e) => {
+            (e.currentTarget as HTMLImageElement).src = 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1200&auto=format&fit=crop&q=80';
+          }}
           className="max-h-[75vh] max-w-full w-auto object-contain rounded-lg shadow-2xl transition-all duration-300"
         />
 

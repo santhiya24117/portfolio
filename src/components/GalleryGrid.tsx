@@ -63,6 +63,10 @@ export const GalleryGrid: React.FC<GalleryGridProps> = ({ items }) => {
                   src={item.image}
                   alt={item.title}
                   loading="lazy"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).src = 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1000&auto=format&fit=crop&q=80';
+                  }}
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
               </div>

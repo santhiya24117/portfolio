@@ -84,7 +84,7 @@ export const PRODUCTS: Product[] = [
     description: 'Crisp pastry rosette filled with house-made frangipane almond cream, topped with toasted flaked almonds and powdered sugar.',
     price: 220,
     formattedPrice: '₹220',
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&auto=format&fit=crop&q=85',
+    image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=900&auto=format&fit=crop&q=85',
     isBestseller: true,
     tags: ['Toasted Almond', 'House Frangipane'],
   },
@@ -191,7 +191,7 @@ export const PRODUCTS: Product[] = [
     description: 'Hearty rolled oats spiced with freshly grated nutmeg, plump flame raisins, and a kiss of orange zest.',
     price: 120,
     formattedPrice: '₹120',
-    image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=900&auto=format&fit=crop&q=85',
+    image: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=900&auto=format&fit=crop&q=85',
     tags: ['Spiced Oats', 'Flame Raisins'],
   },
 

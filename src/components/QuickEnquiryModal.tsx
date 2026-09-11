@@ -136,6 +136,33 @@ export const QuickEnquiryModal: React.FC<QuickEnquiryModalProps> = ({
               )}
             </div>
 
+            {targetItem && targetItem.image && (
+              <div className="flex items-center gap-3.5 p-2.5 rounded-xl bg-[#FAF8F5] border border-[#EBE1D7]">
+                <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0 bg-[#F5EFEB]">
+                  <img
+                    src={targetItem.image}
+                    alt={targetItem.name}
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&auto=format&fit=crop&q=80';
+                    }}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-xs font-semibold text-[#2C2420] truncate">
+                    {targetItem.name}
+                  </p>
+                  <p className="text-[11px] text-[#7E716A] truncate">
+                    {'flavor' in targetItem && targetItem.flavor ? `Flavor: ${targetItem.flavor}` : ('category' in targetItem ? `Category: ${targetItem.category}` : '')}
+                  </p>
+                  <span className="text-xs font-medium text-[#B85D43] font-serif">
+                    {targetItem.formattedPrice}
+                  </span>
+                </div>
+              </div>
+            )}
+
             {error && (
               <p className="text-xs text-red-600 bg-red-50 p-2.5 rounded-lg border border-red-200">
                 {error}

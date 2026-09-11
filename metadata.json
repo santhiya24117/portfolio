@@ -1,0 +1,6 @@
+{
+  "name": "Crumb & Co. | Artisan Bakery",
+  "description": "Discover Crumb & Co., a modern bakery offering freshly baked cakes, pastries, breads, cookies and custom celebration cakes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
